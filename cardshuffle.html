@@ -28,9 +28,9 @@
             /* padding-left: 16px; */
             /* padding-right: 16px; */
             position: absolute;
-             position: absolute;
             top: 50%;
             left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
             text-decoration: none;
             transition: box-shadow .15s, transform .15s;
@@ -75,7 +75,7 @@
         }
 
         .card {
-            border-radius:10px;
+            border-radius: 10px;
             width: 12%;
             margin: 1em;
             height: 26vh;
@@ -93,11 +93,11 @@
             /* Add padding if necessary */
             box-sizing: border-box;
             /* Ensure padding is included in the size */
-            position: absolute;
-            left: -0.2em;
+            /* position: absolute;
+            left: -0.2em; */
             /* top: 0em; */
-            height: 26vh;
-            width: 9vw;
+            height: 25vh;
+            /* width: 9vw; */
         }
 
         /* img {
@@ -145,12 +145,13 @@
         }
 
         .card .flip-card-inner .flip-card-back {
-            background: linear-gradient(45deg, blue, red);
+            background: linear-gradient(45deg, #ff00e3, #00ffc1c7);
             box-shadow: 10px 10px 5px;
             transform: rotateY(180deg);
             text-align: center;
         }
-        .moves{
+
+        .moves {
             width: 10%;
             padding: 1em;
             color: #D6D6E7;
@@ -159,6 +160,28 @@
             background: linear-gradient(to right,
                     #434343,
                     #000000);
+        }
+
+        img {
+            width: 8vw;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #showcase {
+            left: 50%;
+            top: -27%;
+            transform: translate(-50%, 50%);
+            position: relative;
+            font-size: 1rem;
+            color:#470e11;
+        }
+
+        #showcaseImg {
+            top: 60% !important;
+            left:48% !important;
         }
     </style>
 </head>
@@ -171,112 +194,166 @@
     <audio src="./clickCard.mp3" id="clickCard"></audio>
     <audio src="./flipCard.mp3" id="flipCard"></audio>
     <div class="cardContainer" style="display: none;">
-        <div class="card" id="card1" name="IBM">
+        <div class="card" id="card1" name="ASHI">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">IBM</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>ASHI</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card2" name="Capgemini">
+        <div class="card" id="card2" name="INFORMATION SECURITY">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Capgemini</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>INFORMATION SECURITY</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card3" name="Infosys">
+        <div class="card" id="card3" name="ESG - THINK AHEAD">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Infosys</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>ESG - THINK AHEAD</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card4" name="Capgemini">
+        <div class="card" id="card4" name="CODE OF CONDUCT">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Capgemini</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>CODE OF CONDUCT</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card5" name="Infosys">
+        <div class="card" id="card5" name="INFOSYS OVERVIEW">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Infosys</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>INFOSYS OVERVIEW</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card6" name="TCS">
+        <div class="card" id="card6" name="OUR PURPOSE">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">TCS</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>OUR PURPOSE</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card7" name="Wipro">
+        <div class="card" id="card7" name="INFYME">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Wipro</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>INFYME</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card8" name="IBM">
+        <div class="card" id="card8" name="HEAR">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">IBM</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>HEAR</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card9" name="TCS">
+        <div class="card" id="card9" name="LEX LEARN">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">TCS</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>LEX LEARN</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card10" name="IBM">
+        <div class="card" id="card10" name="ASHI">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">IBM</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>ASHI</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card11" name="Capgemini">
+        <div class="card" id="card11" name="INFORMATION SECURITY">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Capgemini</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>INFORMATION SECURITY</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card12" name="Infosys">
+        <div class="card" id="card12" name="INFOSYS OVERVIEW">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Infosys</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>INFOSYS OVERVIEW</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card13" name="Capgemini">
+        <div class="card" id="card13" name="CODE OF CONDUCT">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Capgemini</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>CODE OF CONDUCT</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card14" name="Infosys">
+        <div class="card" id="card14" name="ESG - THINK AHEAD">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Infosys</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>ESG - THINK AHEAD</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card15" name="TCS">
+        <div class="card" id="card15" name="LEX LEARN">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">TCS</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>LEX LEARN</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card16" name="Wipro">
+        <div class="card" id="card16" name="INFYME">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">Wipro</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>INFYME</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card17" name="IBM">
+        <div class="card" id="card17" name="HEAR">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">IBM</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>HEAR</h3>
+                </div>
             </div>
         </div>
-        <div class="card" id="card18" name="TCS">
+        <div class="card" id="card18" name="OUR PURPOSE">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./card-front.svg"></div>
-                <div class="flip-card-back">TCS</div>
+                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="metnobg.png">
+                    <h3 id='showcase'>OUR PURPOSE</h3>
+                </div>
             </div>
         </div>
     </div>
@@ -298,7 +375,7 @@
                     // $(this).find('.flip-card-inner').addClass('flipBack');
                     document.getElementById('clickCard').play();
                     moves++;
-                    document.getElementById('movesLeft').innerText=`Moves Left: ${moves}/30`;
+                    document.getElementById('movesLeft').innerText = `Moves Left: ${moves}/30`;
                     console.log(moves);
                     if (moves < 30) {
                         let cardID = $(this).attr('id');
@@ -329,6 +406,7 @@
                     }
                     else {
                         alert('game over, kindly restart');
+                        window.location.reload;
                         document.getElementsByClassName('button')[0].style.display = 'block';
                         document.getElementsByClassName('cardContainer')[0].style.display = 'none';
                     }
