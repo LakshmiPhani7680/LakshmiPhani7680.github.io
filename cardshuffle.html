@@ -25,8 +25,6 @@
             line-height: 1;
             list-style: none;
             overflow: hidden;
-            /* padding-left: 16px; */
-            /* padding-right: 16px; */
             position: absolute;
             top: 50%;
             left: 50%;
@@ -57,17 +55,16 @@
         }
 
         .cardContainer {
-            /* width: 66vw; */
             width: 72%;
-            height: 94vh;
+            height: 90vh;
             background: linear-gradient(45deg, blue, red);
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
-            /*padding: 1em; */
+            padding: 1em;
             position: absolute;
-            left: 52%;
+            left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
             border-radius: 10px;
@@ -93,20 +90,8 @@
             /* Add padding if necessary */
             box-sizing: border-box;
             /* Ensure padding is included in the size */
-            /* position: absolute;
-            left: -0.2em; */
-            /* top: 0em; */
             height: 25vh;
-            /* width: 9vw; */
         }
-
-        /* img {
-            position: absolute;
-            left: -0.2em;
-            /* top: 0em; 
-            height: 26vh;
-            width: 9vw;
-        } */
 
         .card:hover {
             transform: perspective(1000px) rotateY(10deg);
@@ -152,7 +137,7 @@
         }
 
         .moves {
-            width: 12%;
+            width: 10%;
             padding: 1em;
             color: #D6D6E7;
             border-radius: 10px;
@@ -175,20 +160,20 @@
             top: -27%;
             transform: translate(-50%, 50%);
             position: relative;
-            font-size: 0.86rem;
-            color:#470e11;
+            font-size: 1rem;
+            color: #470e11;
         }
 
         #showcaseImg {
             top: 60% !important;
-            left:48% !important;
+            left: 48% !important;
         }
     </style>
 </head>
 
 <body>
     <div class="moves" style="display: none;">
-        <h3 id="movesLeft">Moves Left: 0/30</h3>
+        <h3 id="movesLeft">Moves Taken: 0/30</h3>
     </div>
     <div class="button" role="button">Play</div>
     <audio src="./clickCard.mp3" id="clickCard"></audio>
@@ -360,29 +345,37 @@
     <script>
 
         $(document).ready(function () {
+            const cardContainer = document.getElementsByClassName('cardContainer')[0];
+            const cards = Array.from(cardContainer.querySelectorAll('.card'));
+            let moves = 0;
             document.getElementsByClassName('button')[0].addEventListener('click', () => {
+                moves = 0;
+                document.getElementById('movesLeft').innerText = `Moves Taken: ${moves}/30`;
                 document.getElementsByClassName('button')[0].style.display = 'none';
                 document.getElementsByClassName('cardContainer')[0].style.display = 'flex';
                 document.getElementsByClassName('moves')[0].style.display = 'block';
+                for (let i = cards.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [cards[i], cards[j]] = [cards[j], cards[i]];
+                }
+                cards.forEach(card => {
+                    $('.flip-card-inner').removeClass('flip');
+                    cardContainer.appendChild(card);
+                });
             })
             let hoveredCards = {}; // Dictionary to track hovered cards
             let len = 0; // Count of hovered cards
-            let moves = 0;
-            // console.log(moves);
             if (len < 2) {
                 $('.card').click(function () {
                     $('.flip-card-inner').removeClass('flipBack');
-                    // $(this).find('.flip-card-inner').addClass('flipBack');
                     document.getElementById('clickCard').play();
                     moves++;
-                    document.getElementById('movesLeft').innerText = `Moves Left: ${moves}/30`;
-                    console.log(moves);
+                    document.getElementById('movesLeft').innerText = `Moves Taken: ${moves}/30`;
                     if (moves < 30) {
                         let cardID = $(this).attr('id');
                         let cardName = $(this).attr('name');
                         // Add the card to the dictionary
                         len = Object.keys(hoveredCards).length;
-                        console.log(len);
                         if (len < 2) {
                             hoveredCards[cardID] = cardName;
                         }
@@ -390,7 +383,6 @@
                         // Add flip effect
                         $(this).find('.flip-card-inner').addClass('flip');
 
-                        console.log(hoveredCards);
                         // Check if count is greater than or equal to 2
                         if (len === 2) {
                             let cardIDs = Object.keys(hoveredCards);
@@ -406,16 +398,13 @@
                     }
                     else {
                         alert('game over, kindly restart');
-                        window.location.reload;
+                        document.getElementById('movesLeft').innerText = `Moves Left: 0`;
                         document.getElementsByClassName('button')[0].style.display = 'block';
                         document.getElementsByClassName('cardContainer')[0].style.display = 'none';
                     }
                 });
                 $('.card').mouseleave(function () {
-                    // console.log($('.flip-card-inner').find('flip'));
-                    // if(len==2){
                     document.getElementById('flipCard').play();
-                    // }
                     len = Object.keys(hoveredCards).length;
                     // Check if count is greater than or equal to 2
                     if (len == 2) {
@@ -428,12 +417,10 @@
                             // Remove the cards
                             $('#' + cardIDs[0]).remove();
                             $('#' + cardIDs[1]).remove();
+                            $('.flip-card-inner').removeClass('flip');
                         }
-                        console.log(hoveredCards);
                         $('.flip-card-inner').removeClass('flip');
                         hoveredCards = {};
-                        // count = 0;
-                        console.log(hoveredCards);
                     }
                     $('.flip-card-inner').removeClass('flipBack');
                 });
