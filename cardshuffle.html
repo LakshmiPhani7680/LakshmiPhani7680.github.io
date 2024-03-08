@@ -46,12 +46,12 @@
 
         .button:hover {
             box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-            transform: translateY(-2px);
+            /* transform: translateY(-2px); */
         }
 
         .button:active {
             box-shadow: #D6D6E7 0 3px 7px inset;
-            transform: translateY(2px);
+            /* transform: translateY(2px); */
         }
 
         .cardContainer {
@@ -71,7 +71,25 @@
             box-shadow: 10px 10px 5px;
         }
 
-        .card {
+        .sampleContainer {
+            width: 34%;
+            height: 48vh;
+            background: linear-gradient(45deg, blue, red);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1em;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            box-shadow: 10px 10px 5px;
+        }
+
+        .card,
+        .cardSample {
             border-radius: 10px;
             width: 12%;
             margin: 1em;
@@ -80,6 +98,11 @@
             perspective: 1000px;
             transform-style: preserve-3d;
             transition: transform 0.5s ease;
+        }
+
+        .cardSample {
+            width: 20% !important;
+            height: 19vh !important;
         }
 
         .flip-card-front img {
@@ -93,11 +116,21 @@
             height: 25vh;
         }
 
+        .flip-card-front #sample {
+            height: 22vh;
+            width: 6.5vw;
+        }
+
         .card:hover {
             transform: perspective(1000px) rotateY(10deg);
         }
 
-        .card .flip-card-inner {
+        .cardSample:hover {
+            transform: perspective(1000px) rotateY(10deg);
+        }
+
+        .card .flip-card-inner,
+        .cardSample .flip-card-inner {
             width: 100%;
             height: 100%;
             transition: transform 0.6s;
@@ -105,16 +138,20 @@
             position: relative;
         }
 
-        .card .flip-card-inner.flip {
+        .card .flip-card-inner.flip,
+        .cardSample .flip-card-inner.flip {
             transform: rotateY(180deg);
         }
 
-        .card .flip-card-inner.flipBack {
+        .card .flip-card-inner.flipBack,
+        .cardSample .flip-card-inner.flipBack {
             transform: rotateY(50deg) rotateX(20deg);
         }
 
         .card .flip-card-inner .flip-card-front,
-        .card .flip-card-inner .flip-card-back {
+        .card .flip-card-inner .flip-card-back,
+        .cardSample .flip-card-inner .flip-card-front,
+        .cardSample .flip-card-inner .flip-card-back {
             width: 100%;
             height: 100%;
             position: absolute;
@@ -122,18 +159,29 @@
             border-radius: 10px;
         }
 
-        .card .flip-card-inner .flip-card-front {
+        .card .flip-card-inner .flip-card-front,
+        .cardSample .flip-card-inner .flip-card-front {
             background: linear-gradient(to right,
                     #434343,
                     #000000);
             box-shadow: 10px 10px 5px;
         }
 
-        .card .flip-card-inner .flip-card-back {
-            background: linear-gradient(45deg, #ff00e3, #00ffc1c7);
+        .cardSample .flip-card-inner .flip-card-front {
+            width: 7vw;
+            height: 24vh;
+        }
+
+        .card .flip-card-inner .flip-card-back,
+        .cardSample .flip-card-inner .flip-card-back {
+            background: hsl(220, 25%, 10%);
             box-shadow: 10px 10px 5px;
             transform: rotateY(180deg);
             text-align: center;
+        }
+
+        .cardSample .flip-card-inner .flip-card-back {
+            height: 24vh;
         }
 
         .moves {
@@ -165,8 +213,48 @@
         }
 
         #showcaseImg {
-            top: 60% !important;
-            left: 48% !important;
+            top: 65% !important;
+            left: 31% !important;
+            height: 18vh;
+            width: 5vw;
+        }
+
+        .tutorialCard {
+            width: 29rem;
+            /* padding: 4rem 2rem; */
+            border-radius: 0.8rem;
+            color: hsl(220, 50%, 90%);
+            background: linear-gradient(to right, hsl(210, 30%, 20%), hsl(255, 30%, 25%));
+            box-shadow: var(--m-shadow, 0.4rem 0.4rem 10.2rem 0.2rem) hsla(236, 50%, 50%, .3);
+            position: absolute;
+            overflow: hidden;
+            transform: translate(-50%, -50%);
+            top: 33%;
+            left: 50%;
+        }
+
+        #tutorialCard {
+            padding: 0 4rem;
+            /* margin-top: 4rem; */
+            font-size: 1.2rem;
+            line-height: 2;
+        }
+
+        body {
+            background: hsl(220, 25%, 10%);
+        }
+
+        #sanji {
+            top: 45% !important;
+            left: 39% !important;
+            height: 26vh;
+            width: 6vw;
+        }
+
+        #title {
+            width: 7vw;
+            position: absolute;
+            top: 15%;
         }
     </style>
 </head>
@@ -178,166 +266,202 @@
     <div class="button" role="button">Play</div>
     <audio src="./clickCard.mp3" id="clickCard"></audio>
     <audio src="./flipCard.mp3" id="flipCard"></audio>
+
+    <div class="tutorialCard" style="display: none;">
+        <p id="tutorialCard">Congratulations You have completed the Tutorial, Now click on Start to start the real game
+            and have fun</p>
+    </div>
+
+    <div class="sampleContainer">
+        <div class="cardSample" id="card1" name="LUFFY">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img id="sample" src="./assets/Front.png"></div>
+                <div class="flip-card-back">
+                    <img id="title" src="./assets/OnePiece Full.png">
+                    <img id="showcaseImg" src="./assets/luffy.png">
+                </div>
+            </div>
+        </div>
+        <div class="cardSample" id="card2" name="FRANKY">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img id="sample" src="./assets/Front.png"></div>
+                <div class="flip-card-back">
+                    <img id="title" src="./assets/OnePiece Full.png">
+                    <img id="showcaseImg" src="./assets/franky.png">
+                </div>
+            </div>
+        </div>
+        <div class="cardSample" id="card3" name="LUFFY">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img id="sample" src="./assets/Front.png"></div>
+                <div class="flip-card-back">
+                    <img id="showcaseImg" src="./assets/luffy.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="cardContainer" style="display: none;">
-        <div class="card" id="card1" name="ASHI">
+        <div class="card" id="card1" name="LUFFY">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>ASHI</h3>
+                    <img id="showcaseImg" src="./assets/luffy.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card2" name="INFORMATION SECURITY">
+        <div class="card" id="card2" name="FRANKY">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>INFORMATION SECURITY</h3>
+                    <img id="showcaseImg" src="./assets/franky.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card3" name="ESG - THINK AHEAD">
+        <div class="card" id="card3" name="ROBIN">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>ESG - THINK AHEAD</h3>
+                    <img id="showcaseImg" src="./assets/robin.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card4" name="CODE OF CONDUCT">
+        <div class="card" id="card4" name="CHOPPER">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>CODE OF CONDUCT</h3>
+                    <img id="showcaseImg" src="./assets/chopper.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card5" name="INFOSYS OVERVIEW">
+        <div class="card" id="card5" name="USOPP">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>INFOSYS OVERVIEW</h3>
+                    <img id="showcaseImg" src="./assets/ussop.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card6" name="OUR PURPOSE">
+        <div class="card" id="card6" name="BROOK">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>OUR PURPOSE</h3>
+                    <img id="showcaseImg" src="./assets/brook.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card7" name="INFYME">
+        <div class="card" id="card7" name="NAMI">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>INFYME</h3>
+                    <img id="showcaseImg" src="./assets/nami.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card8" name="HEAR">
+        <div class="card" id="card8" name="SANJI">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>HEAR</h3>
+                    <img id="sanji" src="./assets/sanji.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card9" name="LEX LEARN">
+        <div class="card" id="card9" name="ZORO">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>LEX LEARN</h3>
+                    <img id="showcaseImg" src="./assets/zoro.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card10" name="ASHI">
+        <div class="card" id="card10" name="LUFFY">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>ASHI</h3>
+                    <img id="showcaseImg" src="./assets/luffy.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card11" name="INFORMATION SECURITY">
+        <div class="card" id="card11" name="FRANKY">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>INFORMATION SECURITY</h3>
+                    <img id="showcaseImg" src="./assets/franky.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card12" name="INFOSYS OVERVIEW">
+        <div class="card" id="card12" name="USOPP">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>INFOSYS OVERVIEW</h3>
+                    <img id="showcaseImg" src="./assets/ussop.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card13" name="CODE OF CONDUCT">
+        <div class="card" id="card13" name="CHOPPER">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>CODE OF CONDUCT</h3>
+                    <img id="showcaseImg" src="./assets/chopper.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card14" name="ESG - THINK AHEAD">
+        <div class="card" id="card14" name="ROBIN">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>ESG - THINK AHEAD</h3>
+                    <img id="showcaseImg" src="./assets/robin.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card15" name="LEX LEARN">
+        <div class="card" id="card15" name="ZORO">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>LEX LEARN</h3>
+                    <img id="showcaseImg" src="./assets/zoro.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card16" name="INFYME">
+        <div class="card" id="card16" name="NAMI">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>INFYME</h3>
+                    <img id="showcaseImg" src="./assets/nami.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card17" name="HEAR">
+        <div class="card" id="card17" name="SANJI">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>HEAR</h3>
+                    <img id="sanji" src="./assets/sanji.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
-        <div class="card" id="card18" name="OUR PURPOSE">
+        <div class="card" id="card18" name="BROOK">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img src="./srbg4.png"></div>
+                <div class="flip-card-front"><img src="./assets/Front.png"></div>
                 <div class="flip-card-back">
-                    <img id="showcaseImg" src="metnobg.png">
-                    <h3 id='showcase'>OUR PURPOSE</h3>
+                    <img id="showcaseImg" src="./assets/brook.png">
+                    <img id="title" src="./assets/OnePiece Full.png">
                 </div>
             </div>
         </div>
@@ -350,6 +474,7 @@
             let moves = 0;
             document.getElementsByClassName('button')[0].addEventListener('click', () => {
                 moves = 0;
+                document.getElementsByClassName('tutorialCard')[0].style.display = 'none';
                 document.getElementById('movesLeft').innerText = `Moves Taken: ${moves}/30`;
                 document.getElementsByClassName('button')[0].style.display = 'none';
                 document.getElementsByClassName('cardContainer')[0].style.display = 'flex';
@@ -366,7 +491,7 @@
             let hoveredCards = {}; // Dictionary to track hovered cards
             let len = 0; // Count of hovered cards
             if (len < 2) {
-                $('.card').click(function () {
+                $(cardContainer).on('click','.card',function () {
                     $('.flip-card-inner').removeClass('flipBack');
                     document.getElementById('clickCard').play();
                     moves++;
@@ -403,7 +528,7 @@
                         document.getElementsByClassName('cardContainer')[0].style.display = 'none';
                     }
                 });
-                $('.card').mouseleave(function () {
+                $(cardContainer).on('mouseleave','.card',function () {
                     document.getElementById('flipCard').play();
                     len = Object.keys(hoveredCards).length;
                     // Check if count is greater than or equal to 2
@@ -424,12 +549,79 @@
                     }
                     $('.flip-card-inner').removeClass('flipBack');
                 });
-                $('.card').mouseenter(function () {
+                $(cardContainer).on('mouseenter','.card', function () {
                     if ($(this).find('.flip-card-inner').find('.flip').prevObject[0].classList.length < 2) {
                         $(this).find('.flip-card-inner').addClass('flipBack');
                         document.getElementById('flipCard').play();
                     }
                 })
+
+                console.log(len);
+                // Sample
+                $('.cardSample').click(function () {
+                    len++;
+                    $('.flip-card-inner').removeClass('flipBack');
+                    document.getElementById('clickCard').play();
+                    let cardID = $(this).attr('id');
+                    let cardName = $(this).attr('name');
+                    // Add the card to the dictionary
+                    len = Object.keys(hoveredCards).length;
+                    if (len < 2) {
+                        hoveredCards[cardID] = cardName;
+                    }
+
+                    // Add flip effect
+                    $(this).find('.flip-card-inner').addClass('flip');
+
+                    // Check if count is greater than or equal to 2
+                    // if (len === 2) {
+                    //     let cardIDs = Object.keys(hoveredCards);
+                    //     let cardNames = Object.values(hoveredCards);
+
+                    //     // Check if the two cards have the same name and different IDs
+                    //     if (cardNames[0] === cardNames[1] && cardIDs[0] !== cardIDs[1]) {
+                    //         console.log('In mouse leave');
+                    //         // Remove the cards
+                    //         // $('#' + cardIDs[0]).remove();
+                    //         // $('#' + cardIDs[1]).remove();
+                    //         document.getElementsByClassName('tutorialCard')[0].style.display = 'block';
+                    //     }
+                    // }
+
+                });
+                $('.cardSample').mouseleave(function () {
+                    document.getElementById('flipCard').play();
+                    len = Object.keys(hoveredCards).length;
+                    // Check if count is greater than or equal to 2
+                    if (len == 2) {
+                        // Clear the dictionary and reset count when mouse leaves a card
+                        // Remove flip effect
+                        let cardIDs = Object.keys(hoveredCards);
+                        let cardNames = Object.values(hoveredCards);
+
+                        if (cardNames[0] === cardNames[1] && cardIDs[0] !== cardIDs[1]) {
+                            console.log('In mouse leave');
+                            //     // Remove the cards
+                            //     $('#' + cardIDs[0]).remove();
+                            //     $('#' + cardIDs[1]).remove();
+                            //     $('.flip-card-inner').removeClass('flip');
+                            document.getElementsByClassName('tutorialCard')[0].style.display = 'block';
+                            document.getElementsByClassName('sampleContainer')[0].style.display = 'none';
+                            // len = 0;
+                        }
+                        $('.flip-card-inner').removeClass('flip');
+                        hoveredCards = {};
+                    }
+                    $('.flip-card-inner').removeClass('flipBack');
+                });
+                $('.cardSample').mouseenter(function () {
+                    if ($(this).find('.flip-card-inner').find('.flip').prevObject[0].classList.length < 2) {
+                        $(this).find('.flip-card-inner').addClass('flipBack');
+                        document.getElementById('flipCard').play();
+                    }
+                })
+
+
             } else {
                 $('.flip-card-inner').removeClass('flip');
             }
