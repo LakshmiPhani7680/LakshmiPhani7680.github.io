@@ -77,7 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
       let profileData;
       if (fetchData.error) {
         // console.log(data);
-        fetch('http://127.0.0.1:5502/src/data.json').then(response => response.json()).then(data => {
+        // http://127.0.0.1:5502/src/data.json
+        fetch('https://lakshmiphani7680.github.io/src/data.json').then(response => response.json()).then(data => {
           profileData = data[0];
           document.getElementById("profile-photo").src = profileData.profile_picture;
           document.getElementById("profile-id-name").textContent = profileData.name;
