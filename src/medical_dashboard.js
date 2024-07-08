@@ -57,3 +57,41 @@ const config = {
 };
 
 const myChart = new Chart(ctx, config);
+
+// To fetch profile data from API
+document.addEventListener("DOMContentLoaded", () => {
+  const headers = new Headers();
+  let username = "coalition";
+  let password = "skills-test";
+  let auth = "Basic " + btoa(username + ":" + password);
+  console.log(auth);
+  const requestOptions = {
+    method: "GET",
+    headers: headers,
+    redirect: "follow",
+  };
+  try {
+    const fetchProfile = async () => {
+      const response = await fetch("https://fedskillstest.coalitiontechnologies.workers.dev", requestOptions);
+      const fetchData = await response.json();
+      let profileData;
+      if (fetchData.error) {
+        // console.log(data);
+        fetch('http://127.0.0.1:5502/src/data.json').then(response => response.json()).then(data => {
+          profileData = data[0];
+          document.getElementById("profile-photo").src = profileData.profile_picture;
+          document.getElementById("profile-id-name").textContent = profileData.name;
+          document.getElementById("profile-dob-info").textContent = profileData.date_of_birth;
+          document.getElementById("profile-gender-info").textContent = profileData.gender;
+          document.getElementById("profile-contact-info").textContent = profileData.phone_number;
+          document.getElementById("profile-emergency-contacts-info").textContent = profileData.emergency_contact;
+          document.getElementById("profile-insurance-info").textContent = profileData.insurance_type;
+        });
+      }
+    };
+    fetchProfile();
+  } catch (e) {
+    console.log(e);
+  }
+
+});
