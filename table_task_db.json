@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Phani",
+      "phone": 9782564723,
+      "email": "phani@gmail",
+      "age": 22
+    },
+    {
+      "id": 2,
+      "name": "Lakshmi",
+      "phone": 9772382564,
+      "email": "lakshmi@gmail",
+      "age": 21
+    },
+    {
+      "id": 3,
+      "name": "Gana",
+      "phone": 9782235647,
+      "email": "gana@gmail",
+      "age": 24
+    },
+    {
+      "id": "4298",
+      "name": "Phani Putrevu",
+      "phone": "08978179669",
+      "email": "lakshmiganaputrevu@gmail.com",
+      "age": "22"
+    }
+  ]
+}
