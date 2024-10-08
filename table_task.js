@@ -13,10 +13,10 @@ function submitData() {
       let td2 = document.createElement("td");
       let td3 = document.createElement("td");
       let td4 = document.createElement("td");
-      td1.innerHTML = res.name;
-      td2.innerHTML = res.phone;
-      td3.innerHTML = res.email;
-      td4.innerHTML = res.age;
+      td1.innerHTML = name;
+      td2.innerHTML = phone;
+      td3.innerHTML = email;
+      td4.innerHTML = age;
       tr.appendChild(td1);
       tr.appendChild(td2);
       tr.appendChild(td3);
