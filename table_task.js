@@ -7,6 +7,21 @@ function submitData() {
     let age = document.getElementById("age").value;
 
     addProfileData(name, phone, email, age);
+    let table = document.getElementsByTagName("table")[0];
+      let tr = document.createElement("tr");
+      let td1 = document.createElement("td");
+      let td2 = document.createElement("td");
+      let td3 = document.createElement("td");
+      let td4 = document.createElement("td");
+      td1.innerHTML = res.name;
+      td2.innerHTML = res.phone;
+      td3.innerHTML = res.email;
+      td4.innerHTML = res.age;
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(td4);
+      table.appendChild(tr);
   });
 }
 
