@@ -40,7 +40,7 @@ function addProfileData(name, phone, email, age) {
     },
     body: JSON.stringify(data),
   };
-  fetch("http://localhost:3000/users", options)
+  fetch("https://lakshmiphani7680.github.io/table_task_db.json", options)
     .then((res) => {
       console.log(res);
     })
