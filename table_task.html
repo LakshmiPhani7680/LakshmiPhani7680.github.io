@@ -16,26 +16,29 @@
             <th>Phone Number</th>
             <th>Email</th>
             <th>Age</th>
-            <!-- </tr>
-          <tr>
+            <th>Gender</th>
+          </tr>
+          <!-- <tr>
             <td>Phani</td>
             <td>9782564723</td>
             <td>phani@gmail.com</td>
             <td>22</td>
+            <td>Male</td>
           </tr>
           <tr>
             <td>Lakshmi</td>
             <td>9772382564</td>
             <td>lakshmi@gmail.com</td>
             <td>21</td>
+            <td>Female</td>
           </tr>
           <tr>
             <td>Gana</td>
             <td>9782235647</td>
             <td>gana@gmail.com</td>
             <td>24</td>
+            <td>Male</td>
           </tr> -->
-          </tr>
         </table>
       </div>
       <div class="add-profile">
@@ -47,6 +50,8 @@
             id="name"
             name="name"
             autocomplete="off"
+            autofocus="off"
+            style="width: 80% !important"
           /><br /><br />
           <label for="phone">Phone Number:</label>
           <input
@@ -61,6 +66,7 @@
             id="email"
             name="email"
             autocomplete="off"
+            style="width: 80% !important"
           /><br /><br />
           <label for="age">Age:</label>
           <input
@@ -68,8 +74,24 @@
             id="age"
             name="age"
             autocomplete="off"
-          /><br /><br />
-          <button type="submit">Submit</button>
+            style="width: 20%"
+          />
+          <select
+            name="Gender"
+            id="gender"
+            style="
+              margin: auto 21px;
+              border-radius: 10px;
+              padding: 4px;
+              cursor: pointer;
+            "
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+          </select>
+          <br /><br />
+          <button type="submit" id="submit">Submit</button>
         </form>
       </div>
     </div>
