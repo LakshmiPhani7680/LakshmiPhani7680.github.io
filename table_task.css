@@ -6,34 +6,30 @@ body {
   padding: 0;
 }
 .container {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%; */
+  width: 84%;
+  padding: 13px;
   display: grid;
-  justify-content: center;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(382px, 1fr));
-  padding-top: 20px;
+  grid-template-columns: 1.8fr 2fr;
+  gap: 80px;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 60px;
+  border-radius: 10px;
 }
+
 .profile-data {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  border-radius: 10px;
   padding: 10px;
-  display: grid;
-  grid-template-rows: 0.5fr 2fr;
-  justify-content: center;
 }
 table {
-  /* width: 60%; */
-  /* margin-top: 10px; */
-  border: 3px solid black;
-  /* text-align: center; */
-  justify-content: center;
+  border: 1px solid black;
+  border-radius: 10px;
   padding: 10px;
-  /* border-style: none; */
-  border-collapse: separate;
   border-spacing: 0 10px;
-  border-radius: 5px;
 }
 th {
   border-bottom: 1px solid black;
@@ -47,18 +43,35 @@ td,
 th {
   padding: 10px 10px;
 }
-
 .add-profile {
-  padding: 10px;
-  border: 2px solid grey;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
   border-radius: 10px;
-  width: 60%;
   padding: 10px;
-  display: flex;
-  flex-direction: column;
 }
+
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: auto;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 13px;
+}
+input {
+  border: none;
+  background-color: whitesmoke;
+  width: 57%;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
+}
+#submit {
+  margin: auto 109px;
+  text-align: center;
+  width: 34%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: black;
+  color: whitesmoke;
+  cursor: pointer;
 }
