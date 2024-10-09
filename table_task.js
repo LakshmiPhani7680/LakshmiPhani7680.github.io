@@ -1,7 +1,3 @@
-console.log(
-  JSON.parse(localStorage.getItem("usersData")[0] !== undefined) &&
-    JSON.parse(localStorage.getItem("usersData"))
-);
 let usersData = [
   JSON.parse(localStorage.getItem("usersData")) || {
     id: 1,
