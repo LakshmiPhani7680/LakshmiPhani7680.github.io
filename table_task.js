@@ -1,5 +1,9 @@
-let usersData = JSON.parse(localStorage.getItem("usersData")) || [
-  {
+console.log(
+  JSON.parse(localStorage.getItem("usersData")[0] !== undefined) &&
+    JSON.parse(localStorage.getItem("usersData"))
+);
+let usersData = [
+  JSON.parse(localStorage.getItem("usersData")) || {
     id: 1,
     name: "Phani",
     phone: 9782564723,
@@ -61,14 +65,14 @@ function getData() {
 function renderTable() {
   let table = document.getElementsByTagName("table")[0];
 
-  table.innerHTML = `<tr>
+  table.innerHTML = `<thead><tr>
       <th>Name</th>
       <th>Phone</th>
       <th>Email</th>
       <th>Age</th>
       <th>Gender</th>
-    </tr>`;
-
+    </tr></thead><tbody></tbody>`;
+  let tbody = document.getElementsByTagName("tbody")[0];
   usersData.map((res) => {
     let tr = document.createElement("tr");
 
@@ -77,20 +81,30 @@ function renderTable() {
     let td3 = document.createElement("td");
     let td4 = document.createElement("td");
     let td5 = document.createElement("td");
-
+    let tempEmail = "";
+    if (res.email.length > 15) {
+      tempEmail = res.email;
+      res.email = res.email.slice(0, 14) + "...";
+      td3.addEventListener("mouseover", (e) => {
+        td3.style.cursor = "pointer";
+        td3.title = tempEmail;
+      });
+    }
     td1.innerText = res.name;
     td2.innerText = res.phone;
     td3.innerText = res.email;
     td4.innerText = res.age;
     td5.innerText = res.gender;
-
+    td3.addEventListener("mouseleave", (e) => {
+      td3.style.cursor = "default";
+    });
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
     tr.appendChild(td5);
-
-    table.appendChild(tr);
+    tbody.appendChild(tr);
+    table.appendChild(tbody);
   });
 }
 
